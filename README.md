@@ -52,7 +52,7 @@
    ```
     
 > [!NOTE]
-> On Windows, this will produce `dnxty.exe`.
+> On Windows, this will produce `dnxty.exe`
 
 
 ---
