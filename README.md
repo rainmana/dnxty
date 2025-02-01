@@ -51,8 +51,8 @@
    go build -o dnxty main.go
    ```
     
-    > [!NOTE]
-    > On Windows, this will produce `dnxty.exe`.
+> [!NOTE]
+> On Windows, this will produce `dnxty.exe`.
 
 
 ---
