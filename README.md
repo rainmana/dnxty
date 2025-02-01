@@ -1,8 +1,3 @@
-Below is an example of a comprehensive, beginner‑ and OSINT‑friendly `README.md` that uses GitHub‑Flavored Markdown, emojis, badges/devicons, multiple example use‑cases, and notes on combining with other CLI tools. You can adjust icons and wording to suit your style.
-
----
-
-```markdown
 # dnxty 🔍
 
 [![Go Version](https://img.shields.io/badge/Go-1.16%2B-blue?style=for-the-badge&logo=go&logoColor=white)](https://golang.org/)
@@ -155,5 +150,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 Happy hunting! 🕵️‍♂️  
 *— Rainmana --*
-```
-
