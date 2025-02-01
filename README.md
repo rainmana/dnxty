@@ -1,6 +1,6 @@
 # dnxty 🔍
 
-[![Go Version](https://img.shields.io/badge/Go-1.16%2B-blue?style=for-the-badge&logo=go&logoColor=white)](https://golang.org/)
+[![Go Version](https://img.shields.io/badge/Go-1.23.3%2B-blue?style=for-the-badge&logo=go&logoColor=white)](https://golang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
 
 **dnxty** is a lightweight, command‑line DNS TXT Record Extraction Utility designed for OSINT analysts, security researchers, and beginners alike. It performs DNS lookups on domains and extracts key/value pairs from TXT records (commonly used for domain verification), with options for simplified output, colorized output, multiple formats, and advanced filtering.
