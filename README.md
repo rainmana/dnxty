@@ -139,6 +139,9 @@ Combine with `grep` and `awk` for custom filtering:
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
+> [!NOTE]
+> This project uses the `gopkg.in/yaml.v2` package, which is licensed under the [Apache License, Version 2.0](APACHE_LICENSE). Please see the NOTICE file for additional attribution.
+
 ---
 
 ## 🤝 Acknowledgements
