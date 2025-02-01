@@ -21,17 +21,28 @@
 
 ## 🚀 Installation
 
-### Prerequisites
+### Install with `go install`
 
-- [Go](https://golang.org/doc/install) 
-- Tested on Go version `go1.23.3 linux/amd64`
+You can easily install **dnxty** using the `go install` command. Make sure you have Go installed (tested on Go version `go1.23.3 linux/amd64`). Run the following command:
 
-### Building from Source
+```bash
+go install github.com/rainmana/dnxty@v1.0.0
+```
+
+Ensure that your `$GOPATH/bin` (typically `~/go/bin`) is in your system's `PATH` so that you can run `dnxty` from anywhere. For example, add the following line to your shell profile (e.g., `~/.bashrc` or `~/.zshrc`):
+
+```bash
+export PATH=$PATH:$(go env GOPATH)/bin
+```
+
+### Building from Source / Making Changes
+
+If you’d like to build from source or contribute to **dnxty**, follow these steps:
 
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/yourusername/dnxty.git
+   git clone https://github.com/rainmana/dnxty.git
    cd dnxty
    ```
 
@@ -50,10 +61,25 @@
    ```bash
    go build -o dnxty main.go
    ```
-    
-> [!NOTE]
-> On Windows, this will produce `dnxty.exe`
 
+   > [!NOTE]
+   > On Windows, this will produce `dnxty.exe`.
+
+4. **Making Changes:**
+
+   - Edit the source code in your favorite editor.
+   - Test your changes locally by rebuilding the binary.
+   - Consider writing tests for new features.
+   - Commit your changes and open a pull request on GitHub if you’d like to contribute.
+
+5. **Tagging a Release:**
+
+   For new releases, tag your commit with a semantic version. For example:
+
+   ```bash
+   git tag v1.0.0
+   git push origin v1.0.0
+   ```
 
 ---
 
@@ -129,7 +155,7 @@ Combine with `grep` and `awk` for custom filtering:
 
 ## 🛠️ Development
 
-- **Code Style**: The project is written in Go and *attempts* follows standard Go conventions (this is my first, "real", Go project).
+- **Code Style**: The project is written in Go and *attempts* to follow standard Go conventions (this is my first, "real", Go project).
 - **Contributing**: Feel free to open issues or pull requests if you have ideas for new features, bug fixes, or improvements.
 - **Testing**: We welcome tests—if you add features, please include tests to help maintain the code quality.
 
@@ -146,10 +172,17 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## 🤝 Acknowledgements
 
-- Inspired by OSINT and security research tools.
+- Inspired by OSINT and security research tools I've relied on for years as a Security Engineer
 - Thanks to the Go community for robust libraries like [`net`](https://golang.org/pkg/net/), [`flag`](https://golang.org/pkg/flag/), and third‑party packages for colorful CLI output.
 
 ---
 
 Happy hunting! 🕵️‍♂️  
-*— Rainmana --*
+*— Rainmana —*
+
+---
+
+### Disclaimers 
+
+- **All opinions are my own and do not represent those of my employer.**
+- **Any tools listed or linked here are for ethical, legal, authorized, and educational purposes only.**
