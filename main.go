@@ -41,6 +41,26 @@ func simplifyKey(key string) string {
 	return key
 }
 
+// printFlagDefaults prints all defined flags with a double-dash (--)
+// before each flag name. It prints a type hint ("string") for non-bool flags
+// and includes the default value when appropriate.
+func printFlagDefaults() {
+	flag.VisitAll(func(f *flag.Flag) {
+		// Determine if the flag is a bool flag by checking its default value.
+		isBool := f.DefValue == "true" || f.DefValue == "false"
+		if isBool {
+			fmt.Fprintf(os.Stderr, "  --%s\n", f.Name)
+		} else {
+			fmt.Fprintf(os.Stderr, "  --%s string\n", f.Name)
+		}
+		fmt.Fprintf(os.Stderr, "        %s", f.Usage)
+		if !isBool && f.DefValue != "" {
+			fmt.Fprintf(os.Stderr, " (default %q)", f.DefValue)
+		}
+		fmt.Fprintf(os.Stderr, "\n")
+	})
+}
+
 func main() {
 	// Define command-line flags.
 	filePath := flag.String("file", "", "Path to a text file containing domain names (one domain per line).")
@@ -63,7 +83,7 @@ func main() {
 		header.Fprintf(os.Stderr, "dnxty - A DNS TXT Record Extraction Utility\n\n")
 		fmt.Fprintf(os.Stderr, "Usage:\n  %s [options] domain1 [domain2 ...]\n\n", os.Args[0])
 		fmt.Fprintf(os.Stderr, "Options:\n")
-		flag.PrintDefaults()
+		printFlagDefaults()
 		fmt.Fprintf(os.Stderr, "\nExamples:\n")
 		example.Fprintf(os.Stderr, "  %s google.com facebook.com\n", os.Args[0])
 		example.Fprintf(os.Stderr, "  %s --file domains.txt --format json\n", os.Args[0])
@@ -362,3 +382,4 @@ func printSimpleCSV(simpleResults []SimpleResult) {
 		fmt.Println(csvStr)
 	}
 }
+
