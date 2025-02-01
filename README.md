@@ -62,8 +62,8 @@ If you’d like to build from source or contribute to **dnxty**, follow these st
    go build -o dnxty main.go
    ```
 
-   > [!NOTE]
-   > On Windows, this will produce `dnxty.exe`.
+> [!NOTE]
+> On Windows, this will produce `dnxty.exe`
 
 4. **Making Changes:**
 
@@ -153,6 +153,20 @@ Combine with `grep` and `awk` for custom filtering:
 
 ---
 
+## 🚀 Future Features
+
+Here are some potential future enhancements that could make **dnxty** even more powerful:
+
+- **DNS over HTTPS (DoH) Support**: Enable secure and privacy-focused DNS lookups using DoH.
+- **Real-Time Monitoring Mode**: Add a watch mode that continuously monitors domains for TXT record changes.
+- **Subdomain Enumeration Integration**: Automatically discover and analyze subdomains for comprehensive reconnaissance.
+- **Interactive CLI Mode**: Develop an interactive interface to guide users through common OSINT tasks.
+- **Plugin System**: Allow community-developed plugins for custom parsing, reporting, and integration with other tools.
+- **Enhanced Reporting**: Generate detailed reports (in HTML, PDF, etc.) for sharing analysis results.
+- **Improved Error Handling & Logging**: Offer verbose logging and error reporting options for troubleshooting and audit purposes.
+
+---
+
 ## 🛠️ Development
 
 - **Code Style**: The project is written in Go and *attempts* to follow standard Go conventions (this is my first, "real", Go project).
@@ -182,7 +196,7 @@ Happy hunting! 🕵️‍♂️
 
 ---
 
-### Disclaimers 
+### Disclaimers
 
 - **All opinions are my own and do not represent those of my employer.**
 - **Any tools listed or linked here are for ethical, legal, authorized, and educational purposes only.**
