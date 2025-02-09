@@ -4,10 +4,12 @@ package main
 import (
 	"bufio"
 	"bytes"
+	"context"
 	"encoding/csv"
 	"encoding/json"
 	"flag"
 	"fmt"
+	"log"
 	"net"
 	"os"
 	"regexp"
@@ -61,6 +63,16 @@ func printFlagDefaults() {
 	})
 }
 
+var (
+	verbose   bool
+	dnsServer string
+)
+
+func init() {
+	flag.BoolVar(&verbose, "verbose", false, "Enable verbose logging")
+	flag.StringVar(&dnsServer, "dns", "", "Specify DNS server to use")
+}
+
 func main() {
 	// Define command-line flags.
 	filePath := flag.String("file", "", "Path to a text file containing domain names (one domain per line).")
@@ -94,6 +106,39 @@ func main() {
 
 	flag.Parse()
 	color.NoColor = *noColor
+
+	if len(flag.Args()) == 0 {
+		fmt.Println("Usage: main.go [options] <domain>")
+		flag.PrintDefaults()
+		os.Exit(1)
+	}
+
+	domain := flag.Args()[0]
+
+	if verbose {
+		log.Printf("Looking up domain: %s", domain)
+		if dnsServer != "" {
+			log.Printf("Using DNS server: %s", dnsServer)
+		}
+	}
+
+	ips, err := lookupDomain(domain)
+	if err != nil {
+		log.Fatalf("Failed to lookup domain: %v", err)
+	}
+
+	for _, ip := range ips {
+		fmt.Println(ip)
+	}
+
+	txts, err := lookupTXTRecords(domain)
+	if err != nil {
+		log.Printf("Error looking up TXT records for %s: %v", domain, err)
+	} else {
+		for _, txt := range txts {
+			fmt.Println(txt)
+		}
+	}
 
 	// Gather domains from file (if provided) and from positional arguments.
 	var domains []string
@@ -383,3 +428,46 @@ func printSimpleCSV(simpleResults []SimpleResult) {
 	}
 }
 
+func lookupDomain(domain string) ([]string, error) {
+	resolver := createResolver()
+	ips, err := resolver.LookupHost(context.Background(), domain)
+	if err != nil {
+		return nil, err
+	}
+
+	if verbose {
+		log.Printf("Resolved IPs: %v", ips)
+	}
+
+	return ips, nil
+}
+
+func lookupTXTRecords(domain string) ([]string, error) {
+	resolver := createResolver()
+	txts, err := resolver.LookupTXT(context.Background(), domain)
+	if err != nil {
+		return nil, err
+	}
+
+	if verbose {
+		log.Printf("Resolved TXT records: %v", txts)
+	}
+
+	return txts, nil
+}
+
+func createResolver() *net.Resolver {
+	if dnsServer != "" {
+		if !strings.Contains(dnsServer, ":") {
+			dnsServer += ":53"
+		}
+		return &net.Resolver{
+			PreferGo: true,
+			Dial: func(ctx context.Context, _, _ string) (net.Conn, error) {
+				d := net.Dialer{}
+				return d.DialContext(ctx, "udp", dnsServer)
+			},
+		}
+	}
+	return net.DefaultResolver
+}
