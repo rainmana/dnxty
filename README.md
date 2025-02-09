@@ -23,10 +23,10 @@
 
 ### Install with `go install`
 
-You can easily install **dnxty** using the `go install` command. Make sure you have Go installed (tested on Go version `go1.23.3 linux/amd64`). Run the following command:
+You can easily install **dnxty** using the `go install` command. Make sure you have Go installed (tested on Go version `go1.23.3 linux/amd64`). Run the following command to install the latest tagged version:
 
 ```bash
-go install github.com/rainmana/dnxty@v1.0.0
+go install github.com/rainmana/dnxty@latest
 ```
 
 Ensure that your `$GOPATH/bin` (typically `~/go/bin`) is in your system's `PATH` so that you can run `dnxty` from anywhere. For example, add the following line to your shell profile (e.g., `~/.bashrc` or `~/.zshrc`):
